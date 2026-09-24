@@ -26,9 +26,15 @@ app.listen(PORT, "0.0.0.0", () => {
 
 app.get('/api/getName', (req, res) => {
     res.set('Access-Control-Allow-Origin', '*');
-    res.json({ name: 'My Website' });
+    res.json({ name: 'Alison\'s Page' });
 });
+
 /*
+res.send
+res.json
+{name: '___"}
+/*
+
 git add .
 git commit -m "__"
 git push
