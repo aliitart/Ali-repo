@@ -1,0 +1,11 @@
+console.log ("Request 1 coming in");
+    console.log("Processing...");
+    console.log("no further requests accepted");
+    await respondAfterDelay (2000);
+    console.log("Done! (req 1)");
+    console.log("ready for new req");
+    console.log("req 2 coming in");
+    console.log ("processing");
+    console.log("no further requests accepted");
+    await respondAfterDelay (2000);
+    console.log("done");
