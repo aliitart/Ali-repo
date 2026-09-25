@@ -29,18 +29,13 @@ app.get('/api/getName', (req, res) => {
     res.json({ name: 'Alison\'s site' });
 });
 
-/*
-res.send
-res.json
-{name: '___"}
-/*
-
-git add .
-git commit -m "__"
-git push
-*/
-
 app.get('/api/getImage', (req, res) => {
     res.set('Access-Control-Allow-Origin', '*');
     res.sendFile('/Users/Alison/Documents/UofW/Adv. Internet Programming/serverProfile.png');
 });
+
+/*
+git add .
+git commit -m "__"
+git push
+*/
