@@ -42,5 +42,5 @@ git push
 
 app.get('api/getImage', (req, res) => {
     res.set('Access-Control-ALLOW-origin', '*');
-    res.sendFile('../Adv. Internet Programming/serverProfile.png');
+    res.sendFile('/Users/Alison/Documents/UofW/Adv. Internet Programming/serverProfile.png');
 });
