@@ -31,7 +31,7 @@ app.get('/api/getName', (req, res) => {
 
 app.get('/api/getImage', (req, res) => {
     res.set('Access-Control-Allow-Origin', '*');
-    res.sendFile('/Users/Alison/Documents/UofW/Adv. Internet Programming/serverProfile.png');
+    res.sendFile('/Users/Alison/Documents/UofW/AIP server/serverProfile.png');
 });
 
 /*
