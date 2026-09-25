@@ -8,7 +8,6 @@ app.get("/", (req, res) => {
     res.send(`
         <!DOCTYPE html>
         <html>
-        <link rel="stylesheet" href="style.css">
         <head>
             <title>Course Server</title>
         </head>
