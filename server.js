@@ -11,7 +11,7 @@ app.get("/", (req, res) => {
         <!DOCTYPE html>
         <html>
         <head>
-        <link id="favicon" rel="icon" href="/icon.jpeg" type="image/jpeg">
+        <link id="favicon" rel="icon" href="/icon.ico" type="image/ico">
             <title>Course Server</title>
         </head>
         <body>
@@ -36,8 +36,8 @@ app.get('/api/getName', (req, res) => {
     res.json({ name: 'Alison\'s site' });
 });
 
-app.get("/icon.jpeg", (req, res) => {
-    res.sendFile(path.join(__dirname, "icon.jpeg"));
+app.get("/icon.ico", (req, res) => {
+    res.sendFile(path.join(__dirname, "icon.ico"));
 });
 
 
