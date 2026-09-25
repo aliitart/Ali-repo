@@ -11,7 +11,7 @@ app.get("/", (req, res) => {
         <!DOCTYPE html>
         <html>
         <head>
-        <link id="favicon" rel="icon" href="../icon.gif" type="image/gif">
+        <link id="favicon" rel="icon" href="/icon.gif" type="image/gif">
             <title>Course Server</title>
         </head>
         <body>
