@@ -15,8 +15,9 @@ app.get("/", (req, res) => {
             <title>Course Server</title>
         </head>
         <body>
-            <h1>Hello from Alison's server!</h1>
-            <p>This page is being served by Node.js and Express.</p>
+            <h1>Welcome to Alison's server!</h1>
+            <p>Check back for future updates ^-^</p>
+            <img src = "/heart.gif" width="200">
         </body>
         </html>
     `);
@@ -40,6 +41,9 @@ app.get("/icon.ico", (req, res) => {
     res.sendFile(path.join(__dirname, "icon.ico"));
 });
 
+app.get("/heart.gif", (req, res) => {
+    res.sendFile(path.join(__dirname, "heart.gif"));
+});
 
 /*
 git add .
