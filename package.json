@@ -9,9 +9,11 @@
   "dependencies": {
     "@aws-sdk/client-s3": "^3.1146.0",
     "@aws-sdk/s3-request-presigner": "^3.1146.0",
-    "express": "^5.1.0"
+    "express": "^5.1.0",
+    "multer": "^2.4.0"
   },
-  "devDependencies": {
-    "nodemon": "^1.19.4"
+  "allowScripts": {
+    "fsevents@1.2.13": true,
+    "nodemon@1.19.4": true
   }
 }
