@@ -29,7 +29,7 @@ app.listen(PORT, "0.0.0.0", () => {
 
 app.get('/api/getImage', (req, res) => {
     res.set('Access-Control-Allow-Origin', '*');
-    res.sendFile(path.join(__dirname, "images", "BANNER.PNG"));
+    res.sendFile(path.join(__dirname, "images", "/BANNER.PNG"));
 });
 
 app.get('/api/getName', (req, res) => {
@@ -38,7 +38,7 @@ app.get('/api/getName', (req, res) => {
 });
 
 app.get("/icon.ico", (req, res) => {
-    res.sendFile(path.join(__dirname, "images", "icon.ico"));
+    res.sendFile(path.join(__dirname, "images", "/icon.ico"));
 });
 
 app.get("/heart.gif", (req, res) => {
