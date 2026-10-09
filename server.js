@@ -11,13 +11,13 @@ app.get("/", (req, res) => {
         <!DOCTYPE html>
         <html>
         <head>
-        <link id="favicon" rel="icon" href="../icon.ico" type="image/ico">
+        <link id="favicon" rel="icon" href="/icon.ico" type="image/ico">
             <title>Course Server</title>
         </head>
         <body>
             <h1>Welcome to Alison's server!</h1>
             <p>Check back for future updates ^-^</p>
-            <img src = "../heart.gif" width="200">
+            <img src = "/heart.gif" width="200">
         </body>
         </html>
     `);
@@ -29,7 +29,7 @@ app.listen(PORT, "0.0.0.0", () => {
 
 app.get('/api/getImage', (req, res) => {
     res.set('Access-Control-Allow-Origin', '*');
-    res.sendFile(path.join(__dirname, "images", "/BANNER.PNG"));
+    res.sendFile(path.join(__dirname, "images", "/banner.jpeg"));
 });
 
 app.get('/api/getName', (req, res) => {
