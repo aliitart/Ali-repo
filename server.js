@@ -11,7 +11,7 @@ app.get("/", (req, res) => {
         <!DOCTYPE html>
         <html>
         <head>
-        <link id="favicon" rel="icon" href="/icon.ico" type="image/ico">
+        <link id="favicon" rel="icon" href="/icon.ico" type="image/x-icon">
             <title>Course Server</title>
         </head>
         <body>
@@ -38,7 +38,7 @@ app.get('/api/getName', (req, res) => {
 });
 
 app.get("/icon.ico", (req, res) => {
-    res.sendFile(path.join(__dirname, "/icon.ico"));
+    res.sendFile(path.join(__dirname, "icon.ico"));
 });
 
 app.get("/heart.gif", (req, res) => {
