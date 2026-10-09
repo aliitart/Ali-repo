@@ -37,8 +37,8 @@ app.get('/api/getName', (req, res) => {
     res.json({ name: 'Alison\'s site' });
 });
 
-app.get("/images/icon.ico", (req, res) => {
-    res.sendFile(path.join(__dirname, "images", "/icon.ico"));
+app.get("/icon.ico", (req, res) => {
+    res.sendFile(path.join(__dirname, "/icon.ico"));
 });
 
 app.get("/heart.gif", (req, res) => {
