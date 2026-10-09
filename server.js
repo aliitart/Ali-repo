@@ -11,13 +11,13 @@ app.get("/", (req, res) => {
         <!DOCTYPE html>
         <html>
         <head>
-        <link id="favicon" rel="icon" href="/icon.ico" type="image/ico">
+        <link id="favicon" rel="icon" href="../icon.ico" type="image/ico">
             <title>Course Server</title>
         </head>
         <body>
             <h1>Welcome to Alison's server!</h1>
             <p>Check back for future updates ^-^</p>
-            <img src = "/heart.gif" width="200">
+            <img src = "../heart.gif" width="200">
         </body>
         </html>
     `);
@@ -29,7 +29,7 @@ app.listen(PORT, "0.0.0.0", () => {
 
 app.get('/api/getImage', (req, res) => {
     res.set('Access-Control-Allow-Origin', '*');
-    res.sendFile(path.join(__dirname, "/BANNER.PNG"));
+    res.sendFile(path.join(__dirname, "images", "BANNER.PNG"));
 });
 
 app.get('/api/getName', (req, res) => {
@@ -38,11 +38,11 @@ app.get('/api/getName', (req, res) => {
 });
 
 app.get("/icon.ico", (req, res) => {
-    res.sendFile(path.join(__dirname, "/icon.ico"));
+    res.sendFile(path.join(__dirname, "images", "icon.ico"));
 });
 
 app.get("/heart.gif", (req, res) => {
-    res.sendFile(path.join(__dirname, "/heart.gif"));
+    res.sendFile(path.join(__dirname, "images", "/heart.gif"));
 });
 
 
