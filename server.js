@@ -29,7 +29,7 @@ app.listen(PORT, "0.0.0.0", () => {
 
 app.get('/api/getImage', (req, res) => {
     res.set('Access-Control-Allow-Origin', '*');
-    res.sendFile(path.join(__dirname, "images", "/getimage.jpeg"));
+    res.sendFile(path.join(__dirname, "images", "/banner.jpeg"));
 });
 
 app.get('/api/getName', (req, res) => {
