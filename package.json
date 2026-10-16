@@ -10,7 +10,8 @@
     "@aws-sdk/client-s3": "^3.1146.0",
     "@aws-sdk/s3-request-presigner": "^3.1146.0",
     "express": "^5.1.0",
-    "multer": "^2.4.0"
+    "multer": "^2.4.0",
+    "multiparty": "^4.3.1"
   },
   "allowScripts": {
     "fsevents@1.2.13": true,
