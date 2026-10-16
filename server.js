@@ -148,7 +148,7 @@ app.post('/submitted', (req, res) => {
             return
         }
         //save file in docs folder
-        part.pipe(fs.createWriteStream(path.join(__dirname, "./docs", part.filename)));
+        part.pipe(fs.createWriteStream(path.join("./docs", part.filename)));
         console.log("File saved");
     });
     //use ajax to send a message about submitted form without reloading the page
