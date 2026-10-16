@@ -115,6 +115,12 @@ const validFields = {
     phone: " ",
     myFile: "application/pdf"
 };
+let file_path = path.join(__dirname, "docs");
+
+if (!fs.existsSync(file_path)) {
+    res.status(404).sendFile(__dirname + '/pages/404.html');
+    return;
+}
 
 //let user upload forms to docs file in server
 app.get('/application/form', (req, res) => {
