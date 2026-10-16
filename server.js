@@ -55,7 +55,7 @@ Course website appearance
 //let image and name be displayed in classroom server
 app.get('/api/getImage', (req, res) => {
     res.set('Access-Control-Allow-Origin', '*');
-    res.sendFile(path.join(__dirname,"images", "banner.jpeg"));
+    res.sendFile(path.join(__dirname, "images", "banner.jpeg"));
 });
 
 app.get('/api/getName', (req, res) => {
@@ -115,12 +115,6 @@ const validFields = {
     phone: " ",
     myFile: "application/pdf"
 };
-let file_path = path.join(__dirname, "docs");
-
-if (!fs.existsSync(file_path)) {
-    res.status(404).sendFile(__dirname + '/pages/404.html');
-    return;
-}
 
 //let user upload forms to docs file in server
 app.get('/application/form', (req, res) => {
@@ -154,7 +148,7 @@ app.post('/submitted', (req, res) => {
             return
         }
         //save file in docs folder
-        part.pipe(fs.createWriteStream(path.join(__dirname, "./docs", part.filename)));
+        part.pipe(fs.createWriteStream(path.join(__dirname, "./doc", part.filename)));
         console.log("File saved");
     });
     //use ajax to send a message about submitted form without reloading the page
