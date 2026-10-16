@@ -135,6 +135,10 @@ app.post('/submitted', (req, res) => {
     //check if file has the correct name, type and size
     form.on("part", (part) => {
         console.log(part.headers);
+        if (part.name !== "myFile") {
+            part.resume();
+            return
+        }
         if (part.headers["content-type"] !== "application/pdf") {
             res.status(418);
             res.send(JSON.stringify({
@@ -143,10 +147,7 @@ app.post('/submitted', (req, res) => {
             part.resume();
             return
         }
-        if (part.name !== "myFile") {
-            part.resume();
-            return
-        }
+        
         //save file in docs folder
         part.pipe(fs.createWriteStream(path.join(__dirname, "./docs", part.filename)));
         console.log("File saved");
