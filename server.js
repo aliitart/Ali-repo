@@ -55,7 +55,7 @@ Course website appearance
 //let image and name be displayed in classroom server
 app.get('/api/getImage', (req, res) => {
     res.set('Access-Control-Allow-Origin', '*');
-    res.sendFile(path.join(__dirname, "images", "banner.jpeg"));
+    res.sendFile(path.join(__dirname, "getImage.jpeg"));
 });
 
 app.get('/api/getName', (req, res) => {
@@ -105,7 +105,7 @@ app.get('/public/:filename', (req, res) => {
 });
 
 /*
-Handle form data and file submission (application form)
+Handle form data (application form)
 */
 //fields that are accepted as uploads
 const validFields = {
