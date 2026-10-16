@@ -55,7 +55,7 @@ Course website appearance
 //let image and name be displayed in classroom server
 app.get('/api/getImage', (req, res) => {
     res.set('Access-Control-Allow-Origin', '*');
-    res.sendFile(path.join(__dirname, "getImage.jpeg"));
+    res.sendFile(path.join(__dirname,"images", "banner.jpeg"));
 });
 
 app.get('/api/getName', (req, res) => {
