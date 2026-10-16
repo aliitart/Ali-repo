@@ -98,7 +98,6 @@ body{
     border: 3px solid #1885b4;
     border-radius: 5px;
     background: linear-gradient(to right, #ffffff, #60b0d3);
-    cursor: pointer;
     width: fit-content;
 }
 

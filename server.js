@@ -37,9 +37,22 @@ app.get("/account", (req, res) => {
     res.sendFile(path.join(__dirname, 'pages', "account.html"))
 })
 
+/*
+Query parameters
+*/
+//display different kinds of photos based on url
 app.get('/album', (req, res) => {
-    res.sendFile(path.join(__dirname, 'pages', 'album.html'))
-})
+    const type = req.query.type;
+    //redirect user to the different pages containing the photos they requested
+    if (type === "groups") {
+        res.sendFile(path.join(__dirname, 'pages', 'groupPhotos.html'));
+    } else if (type === "performances") {
+        res.sendFile(path.join(__dirname, 'pages', 'perfPhotos.html'));
+    } else {
+        res.sendFile(path.join(__dirname, 'pages', 'album.html'));
+    }
+});
+
 
 app.get('/application', (req, res) => {
     res.sendFile(path.join(__dirname, 'pages', "application.html"))
@@ -85,6 +98,7 @@ app.post('/login', (req, res) => {
 /*
 Route parameters
 */
+
 //let user download the recruitment form from the server
 app.get('/public/:filename', (req, res) => {
     let file = req.params.filename;
@@ -103,6 +117,7 @@ app.get('/public/:filename', (req, res) => {
         }
     })
 });
+
 
 /*
 Handle form data (application form)

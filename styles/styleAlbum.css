@@ -1,0 +1,38 @@
+.links{
+    display: flex;
+    justify-content: center;
+    text-align: center;
+    margin: 0;
+    padding: 50px;
+}
+.link-title{
+    background-image: url(header.jpg);
+    background-size: cover;
+    background-repeat: no-repeat;
+    margin: 0 auto;
+    font-family: Monospace, Arial;
+    font-size: 30px;
+    color: rgb(37, 36, 39);
+    border: 3px solid #1885b4;
+    border-radius: 5px;
+    cursor: pointer;
+    width: fit-content;
+    text-decoration: none;
+}
+.links a:hover{
+    color: rgb(184, 93, 221);
+}
+
+.kpop-img{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    position: relative;
+    width: auto;
+}
+
+.kpop-img img{
+    border-radius: 2%;
+    border: 3px solid #1199cf;
+    margin: 20px 5px 5px 20px;
+}
