@@ -149,13 +149,19 @@ app.post('/submitted', (req, res) => {
         }
 
         const filepath = path.join(__dirname, "docs");
-        if (fs.existsSync(filepath)) {
-            //save file in docs folder
-            part.pipe(fs.createWriteStream(path.join(__dirname, "./docs", part.filename)));
-            console.log("File saved");
-        } else {
-            console.log("Folder not found")
-        }
+        //save file in docs folder
+        const destination = path.join(__dirname, "./docs", part.filename);
+        const writeStream = fs.createWriteStream(destination);
+
+        writeStream.on("error", (err) => {
+            console.error("File not saved:", err);
+        });
+
+        writeStream.on("finish", () => {
+            console.log("File successfully written to:", destination);
+        });
+
+        part.pipe(writeStream);
     });
     //use ajax to send a message about submitted form without reloading the page
     form.on("close", () => {
