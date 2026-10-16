@@ -105,7 +105,7 @@ app.get('/public/:filename', (req, res) => {
 });
 
 /*
-Handle form data (application form)
+Handle form data and file submission (application form)
 */
 //fields that are accepted as uploads
 const validFields = {
