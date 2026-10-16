@@ -108,6 +108,8 @@ app.get('/public/:filename', (req, res) => {
 Handle form data (application form)
 */
 //fields that are accepted as uploads
+const { uploadFile, getFileUrl, upload } = require("./storage");
+
 const validFields = {
     name: " ",
     dob: " ",
@@ -121,48 +123,54 @@ app.get('/application/form', (req, res) => {
     res.sendFile(path.join(__dirname, "pages", "application.html"))
 });
 
-app.post('/submitted', (req, res) => {
-    let form = new multiparty.Form({ autoFields: true });
-    //check the fields of the form to be uploaded
-    form.on("field", (name, value) => {
-        Object.keys(validFields).forEach((valid_name) => {
-            if (valid_name === name) {
-                validFields[valid_name] = value;
-            }
-        });
-    });
-
-    //check if file has the correct name, type and size
-    form.on("part", (part) => {
-        console.log(part.headers);
-        if (part.headers["content-type"] !== "application/pdf") {
-            res.status(418);
+app.post('/submitted', (upload.single("myFile"), async (req, res) => {
+    try {
+        if (!req.file) {
+            return res.status(400).send("No file uploaded");
+        }
+        if (req.file.mimetype !== "application/pdf") {
             res.send(JSON.stringify({
                 message: "Invalid file type, must be PDF"
             }))
-            part.resume();
-            return
-        }
-        if (part.name !== "myFile") {
-            part.resume();
-            return
         }
 
-        const filepath = path.join(__dirname, "docs");
-        //save file in docs folder
-        part.pipe(fs.createWriteStream(path.join(__dirname, "./docs", part.filename)));
-        console.log("File saved");
-    });
-    //use ajax to send a message about submitted form without reloading the page
-    form.on("close", () => {
+        let form = new multiparty.Form({ autoFields: true });
+        //check the fields of the form to be uploaded
+        form.on("field", (name, value) => {
+            Object.keys(validFields).forEach((valid_name) => {
+                if (valid_name === name) {
+                    validFields[valid_name] = value;
+                }
+            });
+        });
+
+        const key = `upload /${req.file.originalname}`;
+        await uploadFile(
+            key,
+            req.file.buffer,
+            req.file.mimetype
+        );
+        //submit success message to user and log into console
+        console.log("File uploaded to Blaze");
         res.send(JSON.stringify({
             message: "Form submitted successfully"
         }))
-    });
+    } catch (error) {
+        console.error(error);
+        res.status(500).send("Upload failes");
+    }
+}));
 
-    form.parse(req);
+app.get("/application/:file", async (req, res) => {
+    try {
+        const theFileURL = await getFileUrl(`docs/${req.params.file}`)
+        return res.redirect(theFileURL)
+    } catch (e) {
+        console.error(e)
+        res.status(500).send("Internal Error")
+    }
 });
-
+        
 //feedback form submission handler
 const feedbackFields = {
     name: " ",
@@ -206,3 +214,16 @@ Console
 app.listen(PORT, "0.0.0.0", () => {
     console.log(`Server listening on port ${PORT}`);
 });
+
+/*
+Blaze
+*/
+
+
+
+        
+            
+
+            res.send('Uploaded ${req.file.originalname}');
+        
+

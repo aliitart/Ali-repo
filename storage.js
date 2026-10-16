@@ -1,4 +1,5 @@
 require("dotenv").config()
+const multer = require("multer");
 
 const {
     S3Client,
@@ -13,14 +14,14 @@ const {
 
 const s3 = new S3Client({
     endpoint: process.env.B2_ENDPOINT,
-    region: process.B2_REGION,
+    region: process.env.B2_REGION,
     credentials: {
         accessKeyId: process.env.B2_KEY_ID,
-        secretAccessKey: process.nextTick.B2_APPLICATION_KEY
+        secretAccessKey: process.env.B2_APPLICATION_KEY
     }
-})
+});
 
-const upload = multer({ storage: multermemoryStorage({}) });
+const upload = multer({ storage: multer.memoryStorage({}) });
 
 const bucket = process.env.B2_BUCKET
 
@@ -46,3 +47,9 @@ async function getFileUrl(filename, expiresIn = 600) {
     })
     return url
 }
+
+module.exports = {
+    uploadFile,
+    getFileUrl,
+    upload
+};
