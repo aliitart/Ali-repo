@@ -37,6 +37,14 @@ app.get("/account", (req, res) => {
     res.sendFile(path.join(__dirname, 'pages', "account.html"))
 })
 
+app.get('/application', (req, res) => {
+    res.sendFile(path.join(__dirname, 'pages', "application.html"))
+})
+
+app.get('/feedback', (req, res) => {
+    res.sendFile(path.join(__dirname, 'pages', "feedback.html"))
+})
+
 /*
 Query parameters
 */
@@ -52,15 +60,6 @@ app.get('/album', (req, res) => {
         res.sendFile(path.join(__dirname, 'pages', 'album.html'));
     }
 });
-
-
-app.get('/application', (req, res) => {
-    res.sendFile(path.join(__dirname, 'pages', "application.html"))
-})
-
-app.get('/feedback', (req, res) => {
-    res.sendFile(path.join(__dirname, 'pages', "feedback.html"))
-})
 
 /*
 Course website appearance
@@ -78,12 +77,13 @@ app.get('/api/getName', (req, res) => {
 
 /*
 Log in handler
+Ajax implementation to prevent page to reload 
 */
 //check if login is valid by testing it against a provided password
 app.post('/login', (req, res) => {
     const password = req.body.psw;
     const validPassword = "123Tempo";
-
+//show different messages without reloading the page
     if (password === validPassword) {
         res.send(JSON.stringify({
             message: "Log in Success "
@@ -98,12 +98,11 @@ app.post('/login', (req, res) => {
 /*
 Route parameters
 */
-
 //let user download the recruitment form from the server
 app.get('/public/:filename', (req, res) => {
     let file = req.params.filename;
     let filepath = path.join(__dirname, "public", file);
-
+    //check if file actually exists
     if (!fs.existsSync(filepath)) {
         res.status(404).sendFile(__dirname + '/pages/404.html');
         return;
@@ -118,12 +117,12 @@ app.get('/public/:filename', (req, res) => {
     })
 });
 
-
 /*
 Handle form data (application form)
-currently saves file only while on localhost
+Ajax implementation to prevent page to reload
+currently saves file only while server is in localhost
 */
-//fields that are accepted as uploads
+//fields that are accepted
 const validFields = {
     name: " ",
     dob: " ",
@@ -132,7 +131,7 @@ const validFields = {
     myFile: "application/pdf"
 };
 
-//let user upload forms to docs file in server
+//let user upload forms to docs folder in the server
 app.get('/application/form', (req, res) => {
     res.sendFile(path.join(__dirname, "pages", "application.html"))
 });
@@ -169,13 +168,13 @@ app.post('/submitted', (req, res) => {
         part.pipe(fs.createWriteStream(path.join(__dirname, "./docs", part.filename)));
         console.log("File saved");
     });
-    //use ajax to send a message about submitted form without reloading the page
+    //send message about submitted form without reloading the page
     form.on("close", () => {
         res.send(JSON.stringify({
             message: "Form submitted successfully"
         }))
     });
-
+    //body parser
     form.parse(req);
 });
 
@@ -222,6 +221,7 @@ Console
 app.listen(PORT, "0.0.0.0", () => {
     console.log(`Server listening on port ${PORT}`);
 });
+
 
 /*
 Blaze improvement to save files

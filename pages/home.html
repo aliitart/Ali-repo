@@ -166,6 +166,7 @@
 
 <script>
 
+    //declarations
     const logform = document.getElementById('login-form');
     const logbutton = document.getElementById('login-button');
 
@@ -174,7 +175,7 @@
 
     const swapbutton = document.getElementById('login-swap');
 
-    //hide and show login form as the button is clicked
+    //hide and show login form as the main "log in/ sign up" button is clicked
     logbutton.addEventListener('click', () => {
         logform.classList.toggle('hidden');
     });
@@ -202,8 +203,8 @@
         })
     })
 
+    //create account button
     const createB = document.getElementById('create-button');
-
     createB.addEventListener('click', () => {
         signform.classList.toggle('hidden');
     });
