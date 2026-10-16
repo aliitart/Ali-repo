@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <title>Tempo</title>
+    <link id="favicon" rel="icon" href="/favicon.ico" type="image/ico">
+    <link rel='stylesheet' href='style.css' />
+    <link rel='stylesheet' href='styleForm.css' />
+</head>
+
+<body>
+    <header>
+        <div class="head-container">
+            <div class="title-bar">
+                <div class="logo">
+                    <img src="/logo.jpg" width="100" height="100" alt="logo">
+                </div>
+
+                <h1 class="tempo-title">Tempo Planning</h1>
+
+                <div class="logo">
+                    <img src="/logo.jpg" width="100" height="100" alt="logo">
+                </div>
+            </div>
+
+            <div class="nav-container">
+                <ul>
+                    <li><a href="/home">Home</a></li>
+                    <li><a href="/account">My Account</a></li>
+                    <li><a href="/album">Media</a></li>
+                    <li><a href="/feedback">Feedback</a></li>
+                </ul>
+            </div>
+        </div>
+    </header>
+
+    <div class="content">
+        <p class = "about">
+            Please refer to the following link to review Tempo's expectations and and other important information for new potential members.
+            <br> 
+        </p>
+        <div class="list">
+            <ul>
+                <li><a href="https://docs.google.com">Tempo expectations</a></li>
+            </ul>
+        </div>
+        <p>
+            If you wish to apply online, please use the following form to upload your recruitment document.
+            Or visit us at University of Winnipeg, Asper Building every Monday for in-person applications.
+            <br>
+            <br>
+            For more information message us via <span><a href="https://www.instagram.com">instagram</a></span>.
+            <br>
+            <br>
+            Thank you!
+            <br>
+        </p>
+
+        <div class= "form">
+            <form action="/submitted" method="post" class="upload-files" id="docs-form" enctype="multipart/form-data">
+                <table>
+                    <caption class="formTitle"><b>Recruitment Application Submission<b></caption>
+                    <tr>
+                        <td><label for="fname">Name:</label></td>
+                        <td><input type="text" name="name" id="fname" required></td>
+                    </tr>
+                    <tr>
+                        <td><label for="uname">Date of Birth:</label></td>
+                        <td><input type="date" name="dob" id="uname" required></td>
+                    </tr>
+                    <tr>
+                        <td><label for="email">Email Address:</label></td>
+                        <td><input type="email" name="email" id="email" required></td>
+                    </tr>
+                    <tr>
+                        <td><label for="phone">Phone Number:</label></td>
+                        <td><input type="tel" name="phone" id="phone"></td>
+                    </tr>
+                    <tr>
+                        <td><label for="file">Application form:</label></td>
+                        <td><input type="file" name="myFile" id="upfile" accept="application/pdf" required></td>
+                    </tr>
+            
+                    <tr>
+                        <td colspan="3">
+                            <fieldset>
+                                <legend>How did you hear about Tempo?</legend>
+                                <label for="text">Instagram</label>
+                                <input type="checkbox" name="plan" value="text">
+                                <br>
+                                <br>
+                                <label for="email">YouTube</label>
+                                <input type="checkbox" name="sets" value="text">
+                                <br>
+                                <br>
+                                <label for="text">Winnipeg Dance Events</label>
+                                <input type="checkbox" name="practice" value="text">
+                                <br>
+                                <br>
+                                <label for="email">Friends</label>
+                                <input type="checkbox" name="sm" value="text">
+                                <br>
+                                <br>
+                                <label for="email">Other</label>
+                                <input type="checkbox" name="other" value="text">
+                                <br>
+                            </fieldset>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td colspan="3" class="other-label">If other please specify below:<label for="request"></label></td>
+                    </tr>
+                    <tr>
+                        <td colspan="2"><textarea name="comments" rows="4"></textarea></td>
+                    </tr>
+                    <tr>
+                        <td colspan="2" class="form-buttons">
+                            <button type="submit">Upload</button>
+                            <button type="reset">Reset</button>
+                        </td>
+                    </tr>         
+                </table>
+            </form>
+        </div>
+        <p id="message"></p>
+    </div>
+
+    <footer class="foot">
+        <i><b>&copy Alison Paredes - Advanced Internet Programming - 2026 </b><i>
+    </footer>
+</body>
+<script>
+    //prevent form from reloading the page, display a message instead
+    document.getElementById("docs-form").addEventListener("submit", (event) => {
+        event.preventDefault()
+
+        document.getElementById("message").innerHTML = "";
+
+        const formData = new FormData(event.target)
+        let ajaxReq = new XMLHttpRequest()
+
+        //display message once form is submitted
+        ajaxReq.addEventListener("load", () => {
+            let res = JSON.parse(ajaxReq.responseText)
+            document.getElementById("message").innerHTML = res.message
+
+            //reset form after submission 
+            if (ajaxReq.status === 200) {
+                event.target.reset();
+            }
+
+        })
+
+        //define an end point where we are serving the form
+        ajaxReq.open("POST", "/submitted");
+
+        //submit the form contents
+        ajaxReq.send(formData);
+    });
+</script>
+</html>
