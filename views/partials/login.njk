@@ -1,0 +1,36 @@
+<div id="login-form" class="shown hidden">
+    <form method="post" action="/login" class="form" id="login">
+        <table>
+            <tr>
+                <td colspan="2">
+                    <h2 class="formTitle">
+                        <span class="close-button">&times;</span>
+                        Log in</h2>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <label for="email">Email:</label>
+                </td>
+                <td><input type="email" name="email" id="email" placeholder="Email" required></td>
+            </tr>
+            <tr>
+                <td>
+                    <label for="password">Password:</label>
+                </td>
+                <td><input type="password" name="psw" placeholder="Password" required></td>
+            </tr>
+            <tr>
+                <td colspan="2">
+                    <p id="message"></p>
+                </td>
+            </tr>
+            <tr>
+                <td colspan="2" class="form-buttons">
+                    <button type="submit">Log in</button>
+                    <button type="button" id="signup-button">Sign Up</button>
+                </td>
+            </tr>
+        </table>
+    </form>
+</div>

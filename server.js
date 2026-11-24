@@ -1,4 +1,5 @@
 const express = require("express");
+const nunjucks = require("nunjucks");
 
 const app = express();
 const path = require("path");
@@ -6,6 +7,16 @@ const fs = require("fs");
 const multiparty = require("multiparty");
 
 const PORT = process.env.PORT || 3000;
+
+nunjucks.configure([
+    path.join(__dirname, "views"),
+    path.join(__dirname, "pages")
+], {
+    autoescape: true,
+    express: app,
+    noCache: true
+});
+
 
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
@@ -17,7 +28,6 @@ Static files
 //serve static files from different directories
 app.use(express.static(path.join(__dirname, "images")));
 app.use(express.static(path.join(__dirname, "styles")));
-app.use(express.static(path.join(__dirname, "pages")));
 app.use(express.static(path.join(__dirname, "public")));
 app.use(express.static(path.join(__dirname, "docs")));
 
@@ -26,11 +36,11 @@ Routing of server pages
 */
 //route to the different page addresses
 app.get("/", (req, res) => {
-    res.sendFile(path.join(__dirname, 'pages', 'home.html'));
+    res.render("home.html");
 });
 
 app.get("/home", (req, res) => {
-    res.sendFile(path.join(__dirname, 'pages', 'home.html'))
+    res.render("home.html");
 })
 
 app.get("/account", (req, res) => {
@@ -223,44 +233,3 @@ app.listen(PORT, "0.0.0.0", () => {
 });
 
 
-/*
-Blaze improvement to save files
-not currently working, deployment failed
-
-
-const { uploadFile, getFileUrl, upload } = require("./storage");
-
-app.route("/application")
-    .get((req, res) => {
-        res.sendFile(path.join(__dirname, "pages", "application.html"))
-    })
-    .post(upload.single("myFile"), async (req, res) => {
-        try {
-            if (!req.file) {
-                return res.status(400).send("No image uploaded");
-            }
-            const key = `upload /${req.file.originalname}`;
-
-            await uploadFile(
-                key,
-                req.file.buffer,
-                req.file.mimetype
-            );
-
-            res.send('Uploaded ${req.file.originalname}');
-        } catch (error) {
-            console.error(error);
-            res.status(500).send("Upload files");
-        }
-    })
-
-app.get("/application/:file", async (req, res) => {
-    try {
-        const theFileURL = await getFileUrl(`docs/${req.params.file}`)
-        return res.redirect(theFileURL)
-    } catch (e) {
-        console.error(e)
-        res.status(500).send("Internal Error")
-    }
-})
-*/

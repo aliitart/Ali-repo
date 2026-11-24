@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="en">
+    {% block head %}
+        <head>
+            <meta charset="UTF-8"/>
+            <title>Tempo</title>
+            <link id="favicon" rel="icon" href="/favicon.ico" type="image/ico">
+            <link rel='stylesheet' href='style.css'/>
+            {% block styles %}{% endblock %}
+        </head>
+    {% endblock %}
+    <body>
+        {% include "partials/header.njk" %}
+        <main class="content">
+            {% block content %}{%endblock%}
+        </main>
+        {% include "partials/footer.njk" %}
+        {% block scripts %}{% endblock %}
+    </body>
+</html>

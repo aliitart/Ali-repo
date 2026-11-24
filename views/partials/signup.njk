@@ -1,0 +1,36 @@
+<div id="signup-form" class="hidden shown">
+    <form method="post" action="/login" class="form">
+        <table>
+            <tr>
+                <td colspan="2">
+                    <h2 class="formTitle">
+                        <span class="close-button">&times;</span>
+                        Sign Up</h2>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <label for="user">User name:</label>
+                </td>
+                <td><input type="text" name="user" id="user" placeholder="*grey*" required></td>
+            </tr>
+            <tr>
+                <td>
+                    <label for="email">Email:</label>
+                </td>
+                <td><input type="email" name="email" id="email" placeholder="Email" required></td>
+            </tr>
+            <tr>
+                <td colspan="2">
+                    <p id="message"></p>
+                </td>
+            </tr>
+            <tr>
+                <td colspan="2" class="form-buttons">
+                    <button type="button" id="create-button">Create Account</button>
+                    <button type="button" id="login-swap">Log in</button>
+                </td>
+            </tr>
+        </table>
+    </form>
+</div>
