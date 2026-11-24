@@ -44,7 +44,7 @@ app.get("/home", (req, res) => {
 })
 
 app.get("/account", (req, res) => {
-    res.sendFile(path.join(__dirname, 'pages', "account.html"))
+    res.render("account.html");
 })
 
 app.get('/application', (req, res) => {
